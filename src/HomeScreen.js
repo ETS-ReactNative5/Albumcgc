@@ -8,6 +8,11 @@ import {
   FlatList,
   LogBox,
   Image,
+  StyleSheet,
+  Platform,
+  Dimensions,
+  ActivityIndicator
+
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {
@@ -32,6 +37,7 @@ class HomeScreen extends Component {
     this.state = {
       text: '',
       Albums: [],
+      loading: true
     };
     this.images = [];
   }
@@ -42,7 +48,7 @@ class HomeScreen extends Component {
   async getdata() {
     var List = await APIService.execute('GET', APIService.URL, null);
     if (List.success) {
-      this.setState({Albums: List.data});
+      this.setState({Albums: List.data, loading:false});
       this.props.AddAlbums(List);
     } else {
     }
@@ -72,16 +78,6 @@ class HomeScreen extends Component {
                 justifyContent: 'center',
                 borderRadius: 8,
               }}>
-              {/* <Image
-                source={require('../resources/menu-1.png')}
-                style={{
-                  height: 20,
-                  width: 20,
-                  tintColor: 'grey',
-                  alignSelf: 'center',
-                }}
-                resizeMode="contain"
-              /> */}
             </TouchableOpacity>
           }
           Center={
@@ -145,8 +141,8 @@ class HomeScreen extends Component {
           <View
             style={{flex: 1, flexDirection: 'column', marginBottom: hp('2%')}}>
             <FlatList
-              data={this.state.Albums}
-              extraData={this.state.Albums}
+              data={this.props.Albums && this.props.Albums.data && this.props.Albums.data.data}
+              extraData={this.props.Albums && this.props.Albums.data && this.props.Albums.data.data}
               // number={2}
               renderItem={item => {
                 return (
@@ -201,9 +197,34 @@ class HomeScreen extends Component {
             />
           </View>
         </ScrollView>
+        {this.renderModalContent()}
+
       </SafeAreaView>
     );
   }
+  renderModalContent = () => {
+    if (this.state.loading) {
+      return (
+        <View
+          style={{
+            height:
+              Platform.OS === 'android'
+                ? Dimensions.get('window').height
+                : null,
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: 'rgba(0,0,0,0.08)',
+            justifyContent: 'center',
+            alignItems: 'center',
+            alignSelf: 'center',
+          }}>
+          <ActivityIndicator color={'#000'} size="large" />
+          {/* <Text style={{ marginTop: 20, fontSize: 14, fontWeight: 'bold', color: '#1D3567' }}>{this.state.progressText}</Text> */}
+        </View>
+      );
+    } else {
+      return null;
+    }
+  };
 }
 
 const mapStateToProps = state => {
