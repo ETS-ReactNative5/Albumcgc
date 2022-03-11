@@ -1,0 +1,7 @@
+export const ADD_DEVICES = 'ADD_DEVICES';
+export const ADD_DEVICES_IP = 'ADD_DEVICES_IP';
+export const ADD_ALBUMS = 'ADD_ALBUMS';
+export const ADD_PHOTOS= 'ADD_PHOTOS';
+
+export const DEVICES_STATUS = 'DEVICES_STATUS';
+export const EMERGENCY_CONTACT = 'EMERGENCY_CONTACT';
