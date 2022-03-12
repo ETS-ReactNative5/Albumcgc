@@ -7,8 +7,8 @@
 Clone project:: git clone https://gitlab.com/musaddiqjinabade/albumcgc.git
 
 Command Run: 
-npm or yarn install
-react-native run-android
+npm or yarn install,
+Run=> react-native run-android
 
 Usage in Application(Funtionality)
 1) Usage Redux to store response of API
