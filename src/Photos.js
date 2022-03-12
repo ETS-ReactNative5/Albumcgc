@@ -276,7 +276,7 @@ class Photos extends Component {
               resizeMode={FastImage.resizeMode.contain}
             /> */}
             <Image
-              source={{uri: this.state.imageURL.thumbnailUrl}}
+              source={{uri: this.state.imageURL.url}}
               style={styles.fullImageStyle}
               resizeMode="contain"
             />
