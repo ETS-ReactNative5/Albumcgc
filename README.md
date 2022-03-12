@@ -10,6 +10,11 @@ Command Run:
 npm or yarn install
 react-native run-android
 
+Usage in Application(Funtionality)
+1) Usage Redux to store response of API
+2) Usage Redux to get and Edit update title of Photos
+
+
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
